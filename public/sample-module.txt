@@ -1,0 +1,17 @@
+Photosynthesis
+
+Photosynthesis is the process plants use to convert light energy into chemical energy. It occurs mainly in the chloroplasts of leaf cells.
+
+Light-dependent reactions take place in the thylakoid membranes. Chlorophyll absorbs sunlight and splits water molecules. This releases oxygen and produces ATP and NADPH.
+
+The Calvin cycle is the light-independent stage. It happens in the stroma. Carbon dioxide is fixed into glucose with the help of the enzyme Rubisco.
+
+Limiting factors include light intensity, carbon dioxide concentration, and temperature. If any one of these is too low, the rate of photosynthesis decreases.
+
+Cellular Respiration
+
+Cellular respiration breaks down glucose to release ATP. The main stages are glycolysis, the Krebs cycle, and the electron transport chain.
+
+Glycolysis happens in the cytoplasm and does not require oxygen. The Krebs cycle occurs in the mitochondrial matrix. The electron transport chain is on the inner mitochondrial membrane and produces the most ATP.
+
+Aerobic respiration uses oxygen and yields far more ATP than anaerobic respiration. In animals, anaerobic respiration produces lactic acid.
