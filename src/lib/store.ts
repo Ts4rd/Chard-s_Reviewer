@@ -1,7 +1,12 @@
 "use client";
 
 import { del, get, keys, set } from "idb-keyval";
-import type { LastScore, ReviewerDeck } from "@/lib/types";
+import type {
+  LastScore,
+  MissedIdentificationRecord,
+  MissedMcqRecord,
+  ReviewerDeck,
+} from "@/lib/types";
 
 const PREFIX = "deck:";
 
@@ -39,5 +44,46 @@ export async function updateDeckScore(id: string, lastScore: LastScore) {
   if (!deck) return null;
   const next = { ...deck, lastScore };
   await saveDeck(next);
+  return next;
+}
+
+export async function upsertMissedMcq(id: string, record: MissedMcqRecord) {
+  const deck = await getDeck(id);
+  if (!deck) return [];
+  const next = [
+    ...(deck.missedMultipleChoice ?? []).filter((item) => item.id !== record.id),
+    record,
+  ];
+  await saveDeck({ ...deck, missedMultipleChoice: next });
+  return next;
+}
+
+export async function clearMissedMcq(id: string, itemId: string) {
+  const deck = await getDeck(id);
+  if (!deck) return [];
+  const next = (deck.missedMultipleChoice ?? []).filter((item) => item.id !== itemId);
+  await saveDeck({ ...deck, missedMultipleChoice: next });
+  return next;
+}
+
+export async function upsertMissedIdentification(
+  id: string,
+  record: MissedIdentificationRecord,
+) {
+  const deck = await getDeck(id);
+  if (!deck) return [];
+  const next = [
+    ...(deck.missedIdentification ?? []).filter((item) => item.id !== record.id),
+    record,
+  ];
+  await saveDeck({ ...deck, missedIdentification: next });
+  return next;
+}
+
+export async function clearMissedIdentification(id: string, itemId: string) {
+  const deck = await getDeck(id);
+  if (!deck) return [];
+  const next = (deck.missedIdentification ?? []).filter((item) => item.id !== itemId);
+  await saveDeck({ ...deck, missedIdentification: next });
   return next;
 }

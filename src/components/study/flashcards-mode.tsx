@@ -111,10 +111,12 @@ export function FlashcardsMode({
   return (
     <div className="space-y-5">
       <div className="flex items-center justify-between gap-3 text-sm text-muted-foreground">
-        <span>
+        <span className="shrink-0">
           Card {index + 1} of {queue.length}
         </span>
-        <Badge variant="outline">{card.source}</Badge>
+        <Badge variant="outline" className="max-w-[60%] truncate">
+          {card.source}
+        </Badge>
       </div>
       <Progress value={progress} />
 
@@ -129,7 +131,7 @@ export function FlashcardsMode({
             <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
               Prompt
             </p>
-            <p className="font-display mt-4 text-2xl leading-snug sm:text-3xl">
+            <p className="font-display mt-3 break-words text-xl leading-snug sm:mt-4 sm:text-3xl">
               {card.front}
             </p>
           </div>
@@ -137,13 +139,13 @@ export function FlashcardsMode({
             <p className="text-xs uppercase tracking-[0.2em] text-primary-foreground/70">
               Answer
             </p>
-            <p className="mt-4 text-lg leading-relaxed sm:text-xl">{card.back}</p>
+            <p className="mt-3 break-words text-base leading-relaxed sm:mt-4 sm:text-xl">{card.back}</p>
           </div>
         </div>
       </button>
 
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex gap-2">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex justify-center gap-2 sm:justify-start">
           <Button variant="outline" size="icon" onClick={prev} disabled={index === 0}>
             <ChevronLeft />
           </Button>
@@ -156,14 +158,16 @@ export function FlashcardsMode({
             <ChevronRight />
           </Button>
         </div>
-        <div className="flex gap-2">
-          <Button variant="outline" onClick={() => mark(false)}>
+        <div className="grid grid-cols-2 gap-2 sm:flex">
+          <Button variant="outline" className="w-full sm:w-auto" onClick={() => mark(false)}>
             Still learning
           </Button>
-          <Button onClick={() => mark(true)}>I knew it</Button>
+          <Button className="w-full sm:w-auto" onClick={() => mark(true)}>
+            I knew it
+          </Button>
         </div>
       </div>
-      <p className="text-xs text-muted-foreground">
+      <p className="hidden text-xs text-muted-foreground sm:block">
         Space flips · 1 knew it · 2 still learning
       </p>
     </div>

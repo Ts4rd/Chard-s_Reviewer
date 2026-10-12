@@ -43,7 +43,7 @@ export function LibraryList() {
   }
 
   return (
-    <div className="grid gap-4 md:grid-cols-2">
+    <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
       {decks.map((deck) => {
         const total =
           deck.flashcards.length +
@@ -52,8 +52,8 @@ export function LibraryList() {
         return (
           <Card key={deck.id} className="flex flex-col">
             <CardHeader>
-              <CardTitle className="text-2xl">{deck.title}</CardTitle>
-              <p className="text-sm text-muted-foreground">
+              <CardTitle className="break-words text-xl sm:text-2xl">{deck.title}</CardTitle>
+              <p className="break-all text-sm text-muted-foreground">
                 {deck.sourceName} · {formatDate(deck.createdAt)}
               </p>
             </CardHeader>

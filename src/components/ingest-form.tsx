@@ -109,8 +109,8 @@ export function IngestForm() {
   }
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-      <Card>
+    <div className="grid min-w-0 gap-4 sm:gap-6 lg:grid-cols-2 xl:grid-cols-[1.15fr_0.85fr]">
+      <Card className="min-w-0">
         <CardHeader>
           <CardTitle>Drop a module in</CardTitle>
           <CardDescription>
@@ -131,7 +131,7 @@ export function IngestForm() {
                 setDragOver(false);
                 onFile(event.dataTransfer.files?.[0] ?? null);
               }}
-              className={`flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed px-6 py-10 text-center transition-colors ${
+              className={`flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed px-4 py-7 text-center transition-colors sm:px-6 sm:py-10 ${
                 dragOver
                   ? "border-primary bg-accent/70"
                   : "border-border bg-background/60 hover:border-primary/50"
@@ -139,7 +139,7 @@ export function IngestForm() {
               onClick={() => fileRef.current?.click()}
             >
               <FileUp className="mb-3 h-8 w-8 text-primary" />
-              <p className="font-medium">
+              <p className="max-w-full break-all font-medium sm:break-words">
                 {file ? file.name : "Drag a PDF, PPTX, or DOCX here"}
               </p>
               <p className="mt-1 text-sm text-muted-foreground">
@@ -251,10 +251,10 @@ export function IngestForm() {
         </CardContent>
       </Card>
 
-      <Card className="min-h-[28rem]">
+      <Card className="min-w-0 lg:min-h-[24rem] xl:min-h-[28rem]">
         <CardHeader>
-          <div className="flex items-center justify-between gap-3">
-            <div>
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+            <div className="min-w-0">
               <CardTitle>Extracted preview</CardTitle>
               <CardDescription>
                 Check that the lesson text looks right before generating questions.
@@ -269,15 +269,15 @@ export function IngestForm() {
           {extracted ? (
             <>
               <div>
-                <p className="font-display text-lg">{extracted.title}</p>
-                <p className="text-sm text-muted-foreground">
+                <p className="font-display break-words text-lg">{extracted.title}</p>
+                <p className="break-all text-sm text-muted-foreground">
                   {extracted.sourceName} · {extracted.chunks.length} sections
                 </p>
               </div>
               <Textarea
                 readOnly
                 value={extracted.text.slice(0, 4000)}
-                className="h-64 font-mono text-xs"
+                className="h-48 font-mono text-xs sm:h-64"
               />
               <Button
                 onClick={generateReviewer}
@@ -298,7 +298,7 @@ export function IngestForm() {
               </Button>
             </>
           ) : (
-            <div className="flex h-64 flex-col items-center justify-center rounded-lg border border-dashed border-border text-center text-sm text-muted-foreground">
+            <div className="flex h-40 flex-col items-center justify-center rounded-lg border border-dashed border-border px-4 text-center text-sm text-muted-foreground sm:h-64">
               Extracted headings and pages will show up here.
             </div>
           )}

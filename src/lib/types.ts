@@ -33,6 +33,16 @@ export type LastScore = {
   at: string;
 };
 
+export type MissedMcqRecord = {
+  id: string;
+  lastChoice: number;
+};
+
+export type MissedIdentificationRecord = {
+  id: string;
+  lastGuess: string;
+};
+
 export type ReviewerDeck = {
   id: string;
   title: string;
@@ -44,6 +54,8 @@ export type ReviewerDeck = {
   multipleChoice: MultipleChoice[];
   identification: Identification[];
   lastScore?: LastScore;
+  missedMultipleChoice?: MissedMcqRecord[];
+  missedIdentification?: MissedIdentificationRecord[];
 };
 
 export type TextChunk = {

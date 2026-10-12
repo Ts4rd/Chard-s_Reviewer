@@ -64,6 +64,12 @@
   --font-display: var(--font-display);
 }
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
 body {
   background:
     radial-gradient(1200px 500px at 10% -10%, color-mix(in oklab, var(--accent) 28%, transparent), transparent),
@@ -78,14 +84,28 @@ body {
 
 .flash-scene {
   perspective: 1200px;
-  min-height: 20rem;
+  min-height: 16rem;
 }
 
 .flash-card {
   position: relative;
-  min-height: 20rem;
+  min-height: 16rem;
   transform-style: preserve-3d;
   transition: transform 500ms ease;
+}
+
+@media (min-width: 640px) {
+  .flash-scene,
+  .flash-card {
+    min-height: 20rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .flash-scene,
+  .flash-card {
+    min-height: 22rem;
+  }
 }
 
 .flash-card.is-flipped {
@@ -100,9 +120,16 @@ body {
   justify-content: center;
   border: 1px solid var(--border);
   border-radius: 1rem;
-  padding: 2rem;
+  padding: 1.25rem;
+  overflow: auto;
   backface-visibility: hidden;
   box-shadow: 0 16px 40px color-mix(in oklab, var(--foreground) 8%, transparent);
+}
+
+@media (min-width: 640px) {
+  .flash-face {
+    padding: 2rem;
+  }
 }
 
 .flash-front {

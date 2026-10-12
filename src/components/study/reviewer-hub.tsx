@@ -51,8 +51,8 @@ export function ReviewerHub({ id }: { id: string }) {
               Library
             </Link>
           </Button>
-          <h1 className="font-display text-3xl">{deck.title}</h1>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <h1 className="font-display break-words text-2xl sm:text-3xl">{deck.title}</h1>
+          <p className="mt-1 break-all text-sm text-muted-foreground">
             {deck.sourceName} · saved {formatDate(deck.createdAt)}
           </p>
         </div>
@@ -72,20 +72,32 @@ export function ReviewerHub({ id }: { id: string }) {
       </div>
 
       <Tabs defaultValue={defaultMode}>
-        <TabsList className="flex-wrap">
+        <TabsList>
           {deck.flashcards.length ? (
             <TabsTrigger value="flashcards">
-              Flashcards ({deck.flashcards.length})
+              Cards ({deck.flashcards.length})
             </TabsTrigger>
           ) : null}
           {deck.multipleChoice.length ? (
             <TabsTrigger value="multipleChoice">
-              Multiple choice ({deck.multipleChoice.length})
+              MCQ ({deck.multipleChoice.length}
+              {deck.missedMultipleChoice?.length ? (
+                <span className="hidden sm:inline">
+                  {` · ${deck.missedMultipleChoice.length} misses`}
+                </span>
+              ) : null}
+              )
             </TabsTrigger>
           ) : null}
           {deck.identification.length ? (
             <TabsTrigger value="identification">
-              Identification ({deck.identification.length})
+              ID ({deck.identification.length}
+              {deck.missedIdentification?.length ? (
+                <span className="hidden sm:inline">
+                  {` · ${deck.missedIdentification.length} misses`}
+                </span>
+              ) : null}
+              )
             </TabsTrigger>
           ) : null}
         </TabsList>
